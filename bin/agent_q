@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require_relative '../lib/agent_q'
+
+quepid_case = ARGV[0]
+threshold_score = ARGV[1]
+username = ARGV[2]
+password = ARGV[3]
+
+
+AgentQ.new(quepid_case, threshold_score, username, password).run
