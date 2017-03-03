@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/o19s/agent_q](https://badges.gitter.im/o19s/agent_q.svg)](https://gitter.im/o19s/agent_q?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-AgentQ lets you automate your test driven relevancy cases via [Quepid](Quepid.com).  Easily integrate testing your Solr or Elasticsearch search engine into your CI or Continuous Deployment pipeline.   Be confident that you have highly relevant search results without the manual testing!
+AgentQ lets you automate your test driven relevancy cases via [Quepid](http://www.quepid.com).  Easily integrate testing your Solr or Elasticsearch search engine into your CI or Continuous Deployment pipeline.   Be confident that you have highly relevant search results without the manual testing!
 
 Run a Quepid case automatically from the command line by passing in a case number (`1139`) and the score threshold for deciding if your search results pass or fail (`75`):
 
