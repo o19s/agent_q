@@ -4,7 +4,7 @@
 
 AgentQ lets you automate your test driven relevancy cases via [Quepid](Quepid.com).  Easily integrate testing your Solr or Elasticsearch search engine into your CI or Continuous Deployment pipeline.   Be confident that you have highly relevant search results without the manual testing!
 
-Run a Quepid case automatically from the command line by passing in a case number (`1139`) and the score threshold for pass or failure (`75`):
+Run a Quepid case automatically from the command line by passing in a case number (`1139`) and the score threshold for deciding if your search results pass or fail (`75`):
 
 ```sh
 > ./agent_q 1139 75 epugh@opensourceconnections.com $QUEPID_PASSWORD
@@ -16,14 +16,14 @@ If the Q Score for the case exceeds the threshold, then AgentQ will return 0, ot
 
 
 ## How it Works
-AgentQ is a simple Ruby gem that uses PhantomJS to programmatically interact with Quepid.   You will need to have already installed PhantomJS.   We use AgentQ to verify the search quality for our Jekyll based website at www.opensourceconnections.com.   We just add the gem to our project:
+AgentQ is shipped as a simple Ruby gem that uses PhantomJS to programmatically interact with the rich web application hosted at [Quepid.com](Quepid.com).   Start by installing PhantomJS.  We use AgentQ to verify the search quality for our Jekyll based website at [www.opensourceconnections.com](www.opensourceconnections.com).   To use AgentQ we added the gem to our project:
 
 ```
 # Support CI testing of search with Quepid
 gem 'agent_q', '~> 0.0.3'
 ```
 
-and then call the commandline from CircleCI via this configuration in our `circle.yml` file:
+and then call AgentQ from CircleCI via this configuration in our `circle.yml` file:
 
 ```
 test:
