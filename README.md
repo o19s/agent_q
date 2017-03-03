@@ -6,7 +6,7 @@ Run a Quepid case automatically from the command line by passing in a case numbe
 ```sh
 > ./agent_q 1139 75 epugh@opensourceconnections.com $QUEPID_PASSWORD
 
-Case 1139 scored (49.5) below threshold of 75
+Case o19s blog search (1139) scored 50.3904, \e[31mwhich is below the threshold of 75\e[0m
 ```
 
 If the Q Score for the case exceeds the threshold, then AgentQ will return 0, otherwise it returns 1, which signifies to your CI system that there was a failure.

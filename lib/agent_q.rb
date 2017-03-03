@@ -22,7 +22,8 @@ class AgentQ
 
   def run
 
-
+    # we go direct to the case, which then prompts the login process.  That way we only
+    # score the requested case
     visit("/case/#{@quepid_case}/try/0")
     #save_screenshot('quepid.png')
     fill_in('Email', with: @username)
@@ -38,22 +39,27 @@ class AgentQ
     #save_screenshot('quepid_dashboard.png')
 
     visit "/api/cases/#{@quepid_case}/scores/all.json"
-
     html = page.html
     json = html[html.index('{')..html.rindex('}')]
+    case_results = JSON.parse(json)
 
-    results = JSON.parse(json)
+    visit "/api/cases/#{@quepid_case}.json"
+    html = page.html
+    json = html[html.index('{')..html.rindex('}')]
+    case_details = JSON.parse(json)
 
-    if results['message']
-      puts "Error checking case #{@quepid_case}: #{results['message']}"
+    case_name = case_details["caseName"]
+
+    if case_results['message']
+      puts "Error checking case #{@quepid_case}: #{case_results['message']}"
       exit 1
     else
-      score = results['scores'].first['score']
+      score = case_results['scores'].first['score']
       if score.to_i > @threshold_score.to_i
-        puts "Case #{@quepid_case} scored (#{score}) above threshold of #{@threshold_score}"
+        puts "Case #{case_name} (#{@quepid_case}) scored #{score}, \e[32mwhich is above the threshold of #{@threshold_score}\e[0m"
         exit 0
       else
-        puts "Case #{@quepid_case} scored (#{score}) below threshold of #{@threshold_score}"
+        puts "Case #{case_name} (#{@quepid_case}) scored #{score}, \e[31mwhich is below the threshold of #{@threshold_score}\e[0m"
         exit 1
       end
     end
