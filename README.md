@@ -17,7 +17,7 @@ If the Q Score for the case exceeds the threshold, then AgentQ will return 0, ot
 
 
 ## How it Works
-AgentQ is shipped as a simple Ruby gem that uses PhantomJS to programmatically interact with the rich web application hosted at [Quepid.com](Quepid.com).  Start by installing PhantomJS.  We use AgentQ to verify the search quality of [our website](www.opensourceconnections.com).  We added the gem to our Jekyll project:
+AgentQ is shipped as a simple Ruby gem that uses PhantomJS to programmatically interact with the rich web application hosted at [Quepid.com](http://www.quepid.com).  Start by installing PhantomJS.  We use AgentQ to verify the search quality of [our website](http://www.opensourceconnections.com).  We added the gem to our Jekyll project:
 
 ```
 # Support CI testing of search with Quepid
