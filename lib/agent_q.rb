@@ -24,7 +24,7 @@ class AgentQ
 
     # we go direct to the case, which then prompts the login process.  That way we only
     # score the requested case
-    visit("/case/#{@quepid_case}/try/0")
+    visit("/case/#{@quepid_case}/try/0?source=agent_q")
     #save_screenshot('quepid.png')
     fill_in('Email', with: @username)
     within(:xpath, "/html/body/div[2]/div/div/div[1]/div[1]/div/form") do
@@ -38,12 +38,12 @@ class AgentQ
 
     #save_screenshot('quepid_dashboard.png')
 
-    visit "/api/cases/#{@quepid_case}/scores/all.json"
+    visit "/api/cases/#{@quepid_case}/scores/all.json?source=agent_q"
     html = page.html
     json = html[html.index('{')..html.rindex('}')]
     case_results = JSON.parse(json)
 
-    visit "/api/cases/#{@quepid_case}.json"
+    visit "/api/cases/#{@quepid_case}.json?source=agent_q"
     html = page.html
     json = html[html.index('{')..html.rindex('}')]
     case_details = JSON.parse(json)
