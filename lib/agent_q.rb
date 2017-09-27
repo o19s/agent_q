@@ -55,8 +55,8 @@ class AgentQ
       exit 1
     else
       score = case_results['scores'].first['score']
-      if score.to_i > @threshold_score.to_i
-        puts "Case #{case_name} (#{@quepid_case}) scored #{score}, \e[32mwhich is above the threshold of #{@threshold_score}\e[0m"
+      if score.to_i >= @threshold_score.to_i
+        puts "Case #{case_name} (#{@quepid_case}) scored #{score}, \e[32mwhich meets the threshold of #{@threshold_score}\e[0m"
         exit 0
       else
         puts "Case #{case_name} (#{@quepid_case}) scored #{score}, \e[31mwhich is below the threshold of #{@threshold_score}\e[0m"

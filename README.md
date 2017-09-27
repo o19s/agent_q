@@ -13,7 +13,7 @@ Run a Quepid case automatically from the command line by passing in a case numbe
 Case o19s blog search (1139) scored 50.3904, which is below the threshold of 75
 ```
 
-If the Q Score for the case exceeds the threshold, then AgentQ will return 0, otherwise it returns 1, which signifies to your CI system that there was a failure.
+If the Q Score for the case meets the threshold, then AgentQ will return 0, otherwise it returns 1, which signifies to your CI system that there was a failure.
 
 
 ## How it Works
@@ -21,7 +21,7 @@ AgentQ is shipped as a simple Ruby gem that uses PhantomJS to programmatically i
 
 ```
 # Support CI testing of search with Quepid
-gem 'agent_q', '~> 0.0.3'
+gem 'agent_q', '~> 0.0.5'
 ```
 
 and then call AgentQ from CircleCI via this line in our `circle.yml` file:
