@@ -5,12 +5,12 @@
 
 AgentQ lets you automate your test driven relevancy cases via [Quepid](http://www.quepid.com).  Easily integrate testing your Solr or Elasticsearch search engine into your CI or Continuous Deployment pipeline.   Be confident that you have highly relevant search results without the manual testing!
 
-Run a Quepid case automatically from the command line by passing in a case number (`1139`) and the score threshold for deciding if your search results pass or fail (`75`):
+Run a Quepid case automatically from the command line by passing in a case number (`1139`) and the score threshold for deciding if your search results pass or fail (`10`):
 
 ```sh
-> ./agent_q 1139 75 epugh@opensourceconnections.com $QUEPID_PASSWORD
+> ./agent_q 1139 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
 
-Case o19s blog search (1139) scored 50.3904, which is below the threshold of 75
+Case o19s blog search (1139) scored 10.0, which meets the threshold of 10
 ```
 
 If the Q Score for the case meets the threshold, then AgentQ will return 0, otherwise it returns 1, which signifies to your CI system that there was a failure.
@@ -21,7 +21,7 @@ AgentQ is shipped as a simple Ruby gem that uses PhantomJS to programmatically i
 
 ```
 # Support CI testing of search with Quepid
-gem 'agent_q', '~> 0.0.5'
+gem 'agent_q', '~> 0.0.7'
 ```
 
 and then call AgentQ from CircleCI via this line in our `circle.yml` file:
@@ -30,5 +30,5 @@ and then call AgentQ from CircleCI via this line in our `circle.yml` file:
 test:
   override:
     - bundle exec jekyll build
-    - bundle exec agent_q 1139 75 $QUEPID_USER $QUEPID_PASSWORD
+    - bundle exec agent_q 1139 75 $QUEPID_USER $QUEPID_PASSWORD http://app.quepid.com
 ```

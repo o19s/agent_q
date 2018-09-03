@@ -9,15 +9,16 @@ require 'json'
 class AgentQ
   include Capybara::DSL
 
-  QUEPID_URL = 'http://app.quepid.com'
 
-  def initialize(quepid_case, threshold_score, username, password)
-    Capybara.default_driver = :poltergeist
-    Capybara.app_host = QUEPID_URL
+  def initialize(quepid_case, threshold_score, username, password, quepid_url)
     @quepid_case = quepid_case
     @threshold_score = threshold_score
     @username = username
     @password = password
+    @quepid_url = quepid_url
+
+    Capybara.default_driver = :poltergeist
+    Capybara.app_host = @quepid_url
   end
 
   def run
@@ -27,7 +28,7 @@ class AgentQ
     visit("/case/#{@quepid_case}/try/0")
     #save_screenshot('quepid.png')
     fill_in('Email', with: @username)
-    within(:xpath, "/html/body/div[2]/div/div/div[1]/div[1]/div/form") do
+    within(:xpath, "/html/body/div[3]/div/div/div[1]/div[1]/div/form") do
       fill_in('Password', with: @password)
     end
     #save_screenshot('quepid_login.png')

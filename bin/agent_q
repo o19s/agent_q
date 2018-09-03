@@ -6,6 +6,8 @@ quepid_case = ARGV[0]
 threshold_score = ARGV[1]
 username = ARGV[2]
 password = ARGV[3]
+quepid_url = ARGV[4]
 
 
-AgentQ.new(quepid_case, threshold_score, username, password).run
+
+AgentQ.new(quepid_case, threshold_score, username, password, quepid_url).run
