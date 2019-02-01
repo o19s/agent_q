@@ -21,7 +21,7 @@ AgentQ is shipped as a simple Ruby gem that uses PhantomJS to programmatically i
 
 ```
 # Support CI testing of search with Quepid
-gem 'agent_q', '~> 0.0.7'
+gem 'agent_q', '~> 0.0.9'
 ```
 
 and then call AgentQ from CircleCI via this line in our `circle.yml` file:
@@ -30,5 +30,5 @@ and then call AgentQ from CircleCI via this line in our `circle.yml` file:
 test:
   override:
     - bundle exec jekyll build
-    - bundle exec agent_q 1139 75 $QUEPID_USER $QUEPID_PASSWORD http://app.quepid.com
+      - bundle exec agent_q 1139 75 $QUEPID_USER $QUEPID_PASSWORD http://app.quepid.com
 ```
