@@ -43,12 +43,15 @@ class AgentQ
     html = page.html
     json = html[html.index('{')..html.rindex('}')]
     case_results = JSON.parse(json)
+    if case_results['reason'] == 'Unauthorized!'
+      puts "API reporting Unauthorized!  Username/Password issue in accessing API."
+      exit 1
+    end
 
     visit "/api/cases/#{@quepid_case}.json"
     html = page.html
     json = html[html.index('{')..html.rindex('}')]
     case_details = JSON.parse(json)
-
     case_name = case_details["caseName"]
 
     if case_results['message']
