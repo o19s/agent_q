@@ -8,7 +8,7 @@ AgentQ lets you automate your test driven relevancy cases via [Quepid](http://ww
 Run a Quepid case automatically from the command line by passing in a case number (`1139`) and the score threshold for deciding if your search results pass or fail (`10`):
 
 ```sh
-> ./agent_q 1139 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
+> agent_q 1139 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
 
 Case o19s blog search (1139) scored 10.0, which meets the threshold of 10
 ```
@@ -31,4 +31,16 @@ test:
   override:
     - bundle exec jekyll build
       - bundle exec agent_q 1139 75 $QUEPID_USER $QUEPID_PASSWORD http://app.quepid.com
+```
+
+## Updating the Gem
+
+Read up on how to manage gems at https://guides.rubygems.org/make-your-own-gem/.  
+
+```
+bundle install
+gem build agent_q.gemspec
+gem install ./agent_q-0.0.10.gem
+agent_q 1139 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
+gem publish
 ```
