@@ -40,7 +40,7 @@ Read up on how to manage gems at https://guides.rubygems.org/make-your-own-gem/.
 ```
 bundle install
 gem build agent_q.gemspec
-gem install ./agent_q-0.0.10.gem
+gem install ./agent_q-0.0.11.gem
 agent_q 1139 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
 gem publish
 ```
