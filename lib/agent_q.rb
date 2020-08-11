@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'capybara'
 require 'capybara/dsl'
-require 'capybara/poltergeist'
+require 'capybara/cuprite'
 require 'json'
 
 class AgentQ
@@ -17,7 +17,7 @@ class AgentQ
     @password = password
     @quepid_url = quepid_url
 
-    Capybara.default_driver = :poltergeist
+    Capybara.default_driver = :cuprite
     Capybara.app_host = @quepid_url
   end
 
