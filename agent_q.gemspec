@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name        = 'agent_q'
-  s.version     = '0.0.11'
-  s.date        = '2020-03-17'
+  s.version     = '0.0.12'
+  s.date        = '2020-08-11'
   s.summary     = "Headless agent for test driven relevancy with Quepid.com"
-  s.description = "A ruby agent that wraps PhantomJS that runs a specific Quepid Case and returns if your relevancy score meets or below a threshold."
+  s.description = "A ruby agent that wraps a head browser that runs a specific Quepid Case and returns if your relevancy score meets or falls below a threshold."
   s.authors     = ["Eric Pugh"]
   s.email       = ['epugh@opensourceconnections.com']
   s.files       = ["lib/agent_q.rb"]
