@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.add_runtime_dependency "capybara", '~> 3.31', '>= 3.31'
-  s.add_runtime_dependency "poltergeist", '~> 1.18', '>= 1.18.1'
+  s.add_runtime_dependency "cuprite", '~> 0.11', '>= 0.11'
   s.add_runtime_dependency "nokogiri", '~> 1.10', '>= 1.10.8'
 end
