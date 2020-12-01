@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'agent_q'
-  s.version     = '0.0.12'
-  s.date        = '2020-08-11'
+  s.version     = '0.0.13'
+  s.date        = '2020-12-01'
   s.summary     = "Headless agent for test driven relevancy with Quepid.com"
   s.description = "A ruby agent that wraps a head browser that runs a specific Quepid Case and returns if your relevancy score meets or falls below a threshold."
   s.authors     = ["Eric Pugh"]

@@ -5,12 +5,13 @@
 
 AgentQ lets you automate your test driven relevancy cases via [Quepid](http://www.quepid.com).  Easily integrate testing your Solr or Elasticsearch search engine into your CI or Continuous Deployment pipeline.   Be confident that you have highly relevant search results without the manual testing!
 
-Run a Quepid case automatically from the command line by passing in a case number (`1139`) and the score threshold for deciding if your search results pass or fail (`10`):
+Run a Quepid case automatically from the command line by passing in a case number (`4081`) and the score threshold for deciding if your search results pass or fail (`10`):
 
 ```sh
-> agent_q 1139 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
+> export QUEPID_PASSWORD=your_password
+> agent_q 4081 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
 
-Case o19s blog search (1139) scored 10.0, which meets the threshold of 10
+Case o19s blog search (778) scored 10.0, which meets the threshold of 10
 ```
 
 If the Q Score for the case meets the threshold, then AgentQ will return 0, otherwise it returns 1, which signifies to your CI system that there was a failure.
@@ -30,8 +31,12 @@ and then call AgentQ from CircleCI via this line in our `circle.yml` file:
 test:
   override:
     - bundle exec jekyll build
-      - bundle exec agent_q 1139 75 $QUEPID_USER $QUEPID_PASSWORD http://app.quepid.com
+      - bundle exec agent_q 4081 10 $QUEPID_USER $QUEPID_PASSWORD http://app.quepid.com
 ```
+
+## How to test the code
+
+Just run the code locally via `./bin/agent_q`
 
 ## Updating the Gem
 
@@ -41,7 +46,7 @@ Read up on how to manage gems at https://guides.rubygems.org/make-your-own-gem/.
 bundle install
 gem build agent_q.gemspec
 gem install ./agent_q-0.0.12.gem
-agent_q 1139 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
+agent_q 4081 10 epugh@opensourceconnections.com $QUEPID_PASSWORD http://app.quepid.com
 ```
 
 To deploy to RubyGems:

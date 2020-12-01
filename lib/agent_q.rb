@@ -52,7 +52,7 @@ class AgentQ
     html = page.html
     json = html[html.index('{')..html.rindex('}')]
     case_details = JSON.parse(json)
-    case_name = case_details["caseName"]
+    case_name = case_details["case_name"]
 
     if case_results['message']
       puts "Error checking case #{@quepid_case}: #{case_results['message']}"
