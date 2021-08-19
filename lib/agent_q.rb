@@ -27,13 +27,19 @@ class AgentQ
     # score the requested case
     visit("/case/#{@quepid_case}/try/0")
     #save_screenshot('quepid.png')
-    fill_in('Email', with: @username)
-    within(:xpath, "/html/body/div[3]/div/div/div[1]/div[1]/div/form") do
-      fill_in('Password', with: @password)
+    within('#login') do
+      fill_in('user_email', with: @username)
+      fill_in('user_password', with: @password)
+
+      click_button('Sign in')
     end
+
+    #within(:xpath, "/html/body/div[3]/div/div/div[1]/div[1]/div/form") do
+    #  fill_in('Password', with: @password)
+    #end
     #save_screenshot('quepid_login.png')
 
-    click_button('Login')
+
 
     sleep(20)
 
