@@ -1,6 +1,5 @@
 # Inspired by http://ngauthier.com/2014/06/scraping-the-web-with-ruby.html
 
-require 'rubygems'
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/cuprite'
@@ -18,14 +17,14 @@ class AgentQ
     @quepid_url = quepid_url
 
     Capybara.default_driver = :cuprite
-    Capybara.app_host = @quepid_url
+    #Capybara.app_host = @quepid_url
   end
 
   def run
 
     # we go direct to the case, which then prompts the login process.  That way we only
     # score the requested case
-    visit("/case/#{@quepid_case}/try/0")
+    visit("#{@quepid_url}/case/#{@quepid_case}/try/0")
     #save_screenshot('quepid.png')
     within('#login') do
       fill_in('user_email', with: @username)
@@ -45,7 +44,7 @@ class AgentQ
 
     #save_screenshot('quepid_dashboard.png')
 
-    visit "/api/cases/#{@quepid_case}/scores/all.json"
+    visit "#{@quepid_url}/api/cases/#{@quepid_case}/scores/all.json"
     html = page.html
     json = html[html.index('{')..html.rindex('}')]
     case_results = JSON.parse(json)
@@ -54,7 +53,7 @@ class AgentQ
       exit 1
     end
 
-    visit "/api/cases/#{@quepid_case}.json"
+    visit "#{@quepid_url}/api/cases/#{@quepid_case}.json"
     html = page.html
     json = html[html.index('{')..html.rindex('}')]
     case_details = JSON.parse(json)
@@ -65,7 +64,7 @@ class AgentQ
       exit 1
     else
       score = case_results['scores'].first['score']
-      if score.to_i >= @threshold_score.to_i
+      if score.to_f >= @threshold_score.to_f
         puts "Case #{case_name} (#{@quepid_case}) scored #{score}, \e[32mwhich meets the threshold of #{@threshold_score}\e[0m"
         exit 0
       else
