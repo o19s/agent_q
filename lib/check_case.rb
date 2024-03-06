@@ -5,7 +5,7 @@ require 'capybara/dsl'
 require 'capybara/cuprite'
 require 'json'
 
-class AgentQ
+class CheckCase
   include Capybara::DSL
 
 
@@ -15,8 +15,13 @@ class AgentQ
     @username = username
     @password = password
     @quepid_url = quepid_url
+    
+    Capybara.register_driver :cuprite do |app|
+      Capybara::Cuprite::Driver.new(app, timeout: 30) # Increase timeout to 30 seconds
+    end
 
     Capybara.default_driver = :cuprite
+    Capybara.default_max_wait_time = 30 # Increase timeout to 30 seconds
     #Capybara.app_host = @quepid_url
   end
 
@@ -32,17 +37,17 @@ class AgentQ
 
       click_button('Sign in')
     end
-
-    #within(:xpath, "/html/body/div[3]/div/div/div[1]/div[1]/div/form") do
-    #  fill_in('Password', with: @password)
-    #end
     #save_screenshot('quepid_login.png')
 
+    visit("#{@quepid_url}/case/#{@quepid_case}")
 
+    page.has_css?('.search-feedback', visible: true, wait: Capybara.default_max_wait_time)
+    
+    #save_screenshot('quepid_case_queries2.png')
 
-    sleep(20)
-
-    #save_screenshot('quepid_dashboard.png')
+    page.has_no_css?('.search-feedback', wait: Capybara.default_max_wait_time)
+    
+    #save_screenshot('quepid_case.png')
 
     visit "#{@quepid_url}/api/cases/#{@quepid_case}/scores/all.json"
     html = page.html
