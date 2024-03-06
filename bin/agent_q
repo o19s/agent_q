@@ -1,13 +1,17 @@
 #!/usr/bin/env ruby
 require 'rubygems'
-require_relative '../lib/agent_q'
+require_relative '../lib/check_case'
 
-quepid_case = ARGV[0]
-threshold_score = ARGV[1]
-username = ARGV[2]
-password = ARGV[3]
-quepid_url = ARGV[4]
+subcommand = ARGV[0]
 
-
-
-AgentQ.new(quepid_case, threshold_score, username, password, quepid_url).run
+if subcommand == 'checkcase'
+  quepid_case = ARGV[1]
+  threshold_score = ARGV[2]
+  username = ARGV[3]
+  password = ARGV[4]
+  quepid_url = ARGV[5]
+  
+  
+  
+  CheckCase.new(quepid_case, threshold_score, username, password, quepid_url).run
+end
