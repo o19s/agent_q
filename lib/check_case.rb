@@ -30,25 +30,24 @@ class CheckCase
     # we go direct to the case, which then prompts the login process.  That way we only
     # score the requested case
     visit("#{@quepid_url}/case/#{@quepid_case}/try/0")
-    save_screenshot('quepid.png')
+    #save_screenshot('quepid.png')
     within('#login') do
       fill_in('user_email', with: @username)
       fill_in('user_password', with: @password)
 
       click_button('Sign in')
     end
-    save_screenshot('quepid_login.png')
-
-
-
-    #sleep(20)
-    #save_screenshot('quepid_dashboard.png')
+    #save_screenshot('quepid_login.png')
 
     visit("#{@quepid_url}/case/#{@quepid_case}")
 
-    #sleep(1)
+    page.has_css?('.search-feedback', visible: true, wait: Capybara.default_max_wait_time)
+    
+    #save_screenshot('quepid_case_queries2.png')
 
-    save_screenshot('quepid_case.png')
+    page.has_no_css?('.search-feedback', wait: Capybara.default_max_wait_time)
+    
+    #save_screenshot('quepid_case.png')
 
     visit "#{@quepid_url}/api/cases/#{@quepid_case}/scores/all.json"
     html = page.html

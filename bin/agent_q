@@ -1,17 +1,25 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require_relative '../lib/check_case'
+require_relative '../lib/run_queries'
 
 subcommand = ARGV[0]
 
-if subcommand == 'checkcase'
+if subcommand == 'check-case'
   quepid_case = ARGV[1]
   threshold_score = ARGV[2]
   username = ARGV[3]
   password = ARGV[4]
   quepid_url = ARGV[5]
   
-  
-  
   CheckCase.new(quepid_case, threshold_score, username, password, quepid_url).run
+end
+
+if subcommand == 'run-queries'
+  quepid_case = ARGV[1]
+  username = ARGV[2]
+  password = ARGV[3]
+  quepid_url = ARGV[4]
+  
+  RunQueries.new(quepid_case, username, password, quepid_url).run
 end
